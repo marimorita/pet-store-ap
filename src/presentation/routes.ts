@@ -1,18 +1,18 @@
 import { Router } from 'express'; // 2
-import { AuthRoutes } from '../auth/routes'; //6
+import { AuthController } from './auth/controller'; //6
 
-export class AppRoutes { // 1
+export class AppRoutes {
 
 
-    static get routes(): Router { //3
-  
-      const router = Router(); //4
-  
-      // Definir todas mis rutas principales
-      router.use('/api/auth', AuthRoutes.routes ) // 7
- 
-      return router; //5
-    }
-  
-  
- }
+  static get routes(): Router {
+
+    const router = Router();
+    const controller = new AuthController(); // 2
+
+      // Definir todas mis rutas especificas
+      router.post('/login', controller.loginUser) // 3
+      router.post('/register', controller.registerUser) // 4
+      return router;
+  }
+
+}
