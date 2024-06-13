@@ -1,8 +1,9 @@
-//importamos las librerias
-import  'dotenv/config';
+import "dotenv/config";
 import { get } from "env-var";
 
-//creamos nuestru enum que manejara nuestra envs
 export const envs = {
-    PORT: 3000
-}
+  PORT: get("PORT").required().asPortNumber(),
+
+  MONGO_URL: get("MONGO_URL").required().asString(), //1
+  MONGO_DB_NAME: get("MONGO_DB_NAME").required().asString(), //2
+};
